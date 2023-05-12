@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\kropacekv\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\kropacekv\\.nuget\\packages"
+    ]
+  }
+}
