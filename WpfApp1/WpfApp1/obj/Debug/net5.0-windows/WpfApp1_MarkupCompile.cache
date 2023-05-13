@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 C:\Users\kropacekv\Documents\c#projets\Archetype\WpfApp1\WpfApp1\App.xaml
-31322142145
+61732508283
 
-141275148471
+171073332900
 193-1891726104
-MainWindow.xaml;Pages\Bmi.xaml;Pages\PatientStatus.xaml;
+MainWindow.xaml;Pages\BloodPressure.xaml;Pages\Bmi.xaml;Pages\HealthRiskAssesment.xaml;Pages\PatientStatus.xaml;Pages\Weight.xaml;
 
 True
 

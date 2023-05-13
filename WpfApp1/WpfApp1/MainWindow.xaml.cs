@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using WpfApp1.Archetypes;
 using WpfApp1.Archetypes.Patient;
 using WpfApp1.page_Classes;
 using WpfApp1.Pages;
@@ -26,6 +13,9 @@ namespace WpfApp1
     {
         private MainWindowClass _mainWindowClassWindow;
         private PatientStatus _patientStatus;
+        private Bmi _bmi;
+        private BloodPressure _bloodPressure;
+        private Weight _weight;
         private Patient activePatient;
 
         public MainWindow()
@@ -33,14 +23,25 @@ namespace WpfApp1
             InitializeComponent();
             _mainWindowClassWindow = new MainWindowClass();
             _patientStatus = new PatientStatus(_mainWindowClassWindow);
-            Tools.Visibility = Visibility.Hidden;
+            _bmi = new Bmi();
+            _bloodPressure = new BloodPressure();
+            _weight = new Weight();
+            //Tools.Visibility = Visibility.Hidden;
 
         }
 
         
-        private void HelloWorldButton_Click(object sender, RoutedEventArgs e)
+        private void BMI_Click(object sender, RoutedEventArgs e)
         {
-            
+            Main.Content = _bmi;
+        }
+        private void Weight_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = _weight;
+        }
+        private void BloodPressure_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = _bloodPressure;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -48,6 +49,7 @@ namespace WpfApp1
             Main.Content = _patientStatus;
 
         }
+        
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             List<Button> buttons = new List<Button>();

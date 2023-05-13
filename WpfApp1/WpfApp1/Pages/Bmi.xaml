@@ -5,8 +5,34 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:WpfApp1.Pages"
       mc:Ignorable="d"
-      Title="Bmi" Height="450" Width="800">
-    <Grid>
-        
+      Title="Bmi" Height="600" Width="800">
+    <Border BorderBrush="Black" BorderThickness="2">
+    <Grid Background="Moccasin">
+        <Grid Height="80" VerticalAlignment="Top">
+            <Label FontSize="40" Content="Body mass index" />
+            <Button Click="ButtonBase_Save" FontSize="17" Width="100" Height="40" VerticalContentAlignment="Top" HorizontalAlignment="Right" Margin="0,0,30,0">Ulož měření</Button>
+            
+        </Grid>
+        <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="270"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+       
+        <StackPanel Grid.Column="0" Margin="0, 100, 0, 0">
+            <Label Height="40" Margin="0, 0, 0, 10" FontSize="25" Content="BMI: " />
+            <Label Height="40" Margin="0, 0, 0, 10" FontSize="25" Content="Klinická interpretace: " />
+            <Label Height="40" Margin="0, 0, 0, 10" FontSize="25" Content="Komentář: " />
+            <Label Height="40" Margin="0, 80" FontSize="25" Content="Ovliňující faktory: " />
+        </StackPanel>
+        <StackPanel Grid.Column="1" Width="500" HorizontalAlignment="Left" Margin="0, 100, 0, 0">
+            <TextBox Height="40" Margin="0, 0, 0, 10" Width="250" HorizontalAlignment="Left" FontSize="25" Name="bmi" > </TextBox>
+            <ComboBox Height="40" Margin="0, 0, 0, 10" FontSize="25" Width="250" HorizontalAlignment="Left" Name="interpret" > </ComboBox> 
+            <TextBox TextWrapping="Wrap" Margin="0, 0, 0, 10" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Height="120" FontSize="25" Name="comment" > </TextBox> 
+            <TextBox TextWrapping="Wrap" Margin="0, 0, 0, 10" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Height="120" FontSize="25" Name="cofounding" > </TextBox> 
+        </StackPanel>
+     
     </Grid>
+    </Grid>
+        </Border>
 </Page>

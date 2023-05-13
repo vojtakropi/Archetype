@@ -1,6 +1,6 @@
 namespace WpfApp1.Archetypes.Observatory;
 
-public class Weight
+public class Weight_object
 {
     private int weight;
 
@@ -10,7 +10,7 @@ public class Weight
 
     private string cofoundingF;
 
-    public Weight(int weight, string comment, string stateOfDress, string cofoundingF)
+    public Weight_object(int weight, string comment, string stateOfDress, string cofoundingF)
     {
         this.weight = weight;
         this.comment = comment;

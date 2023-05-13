@@ -1,6 +1,6 @@
 namespace WpfApp1.Archetypes.medication;
 
-public class Medication
+public class Medication_object
 {
     private string medication;
 
@@ -8,7 +8,7 @@ public class Medication
 
     private string bodySite;
 
-    public Medication(string medication, string route, string bodySite)
+    public Medication_object(string medication, string route, string bodySite)
     {
         this.medication = medication;
         this.route = route;

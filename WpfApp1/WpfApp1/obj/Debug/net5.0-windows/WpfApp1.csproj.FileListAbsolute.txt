@@ -22,3 +22,9 @@ C:\Users\kropacekv\Documents\c#projets\Archetype\WpfApp1\WpfApp1\obj\Debug\net5.
 C:\Users\kropacekv\Documents\c#projets\Archetype\WpfApp1\WpfApp1\obj\Debug\net5.0-windows\ref\WpfApp1.dll
 C:\Users\kropacekv\Documents\c#projets\Archetype\WpfApp1\WpfApp1\obj\Debug\net5.0-windows\Pages\PatientStatus.g.cs
 C:\Users\kropacekv\Documents\c#projets\Archetype\WpfApp1\WpfApp1\obj\Debug\net5.0-windows\Pages\PatientStatus.baml
+C:\Users\kropacekv\Documents\c#projets\Archetype\WpfApp1\WpfApp1\obj\Debug\net5.0-windows\Pages\Bmi.g.cs
+C:\Users\kropacekv\Documents\c#projets\Archetype\WpfApp1\WpfApp1\obj\Debug\net5.0-windows\Pages\Bmi.baml
+C:\Users\kropacekv\Documents\c#projets\Archetype\WpfApp1\WpfApp1\obj\Debug\net5.0-windows\Pages\BloodPressure.g.cs
+C:\Users\kropacekv\Documents\c#projets\Archetype\WpfApp1\WpfApp1\obj\Debug\net5.0-windows\Pages\BloodPressure.baml
+C:\Users\kropacekv\Documents\c#projets\Archetype\WpfApp1\WpfApp1\obj\Debug\net5.0-windows\Pages\Weight.g.cs
+C:\Users\kropacekv\Documents\c#projets\Archetype\WpfApp1\WpfApp1\obj\Debug\net5.0-windows\Pages\Weight.baml

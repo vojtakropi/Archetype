@@ -33,13 +33,13 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <Button Grid.Row="0" Grid.Column="0" Width="100" Click="HelloWorldButton_Click" Margin="20" HorizontalAlignment="Left">Go Back</Button>
+        <Button Grid.Row="0" Grid.Column="0" Width="100" Click="BMI_Click" Margin="20" HorizontalAlignment="Left">Go Back</Button>
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Name="Tools">
-            <Button Click="HelloWorldButton_Click" Margin="5" >Act</Button>
-            <Button Click="HelloWorldButton_Click" Margin="5" >Eval</Button>
-            <Button Click="HelloWorldButton_Click" Margin="5" >Obs</Button>
-            <Button Click="HelloWorldButton_Click" Margin="5">Obs</Button>
-            <Button Click="HelloWorldButton_Click" Margin="5">Instruction</Button>
+            <Button Click="BMI_Click" Margin="5" >Act</Button>
+            <Button Click="BloodPressure_Click" Margin="5" >Eval</Button>
+            <Button Click="BMI_Click" Margin="5" >Obs</Button>
+            <Button Click="Weight_Click" Margin="5">Obs</Button>
+            <Button Click="BMI_Click" Margin="5">Instruction</Button>
             </StackPanel>
         <Button Grid.Row="0" Grid.Column="2" Width="100" Click="Button_Click_1" Margin="20" HorizontalAlignment="Right">Novy pacient</Button>
         <Button Grid.Row="0" Grid.Column="2" Width="100" Click="Button_Click_2" Margin="20" HorizontalAlignment="Left">Vyber pacienta</Button>

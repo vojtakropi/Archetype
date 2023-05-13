@@ -2,7 +2,7 @@ using System;
 
 namespace WpfApp1.Archetypes.Evaulation;
 
-public class HealtRiskAssessment
+public class HealtRiskAssessment_object
 {
     private string healthRisk;
 
@@ -18,7 +18,7 @@ public class HealtRiskAssessment
 
     private string comment;
 
-    public HealtRiskAssessment(string healthRisk, string riskFactor, string presence, string description, DateTime date, string assesmentMethode, string comment)
+    public HealtRiskAssessment_object(string healthRisk, string riskFactor, string presence, string description, DateTime date, string assesmentMethode, string comment)
     {
         this.healthRisk = healthRisk;
         this.riskFactor = riskFactor;
