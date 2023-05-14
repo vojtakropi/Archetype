@@ -10,7 +10,7 @@
     <Grid Background="Moccasin">
         <Grid Height="80" VerticalAlignment="Top">
             <Label FontSize="40" Content="Hodnocení zdravotních rizik" />
-            <Button Click="ButtonBase_Save" FontSize="17" Width="100" Height="40" VerticalContentAlignment="Top" HorizontalAlignment="Right" Margin="0,0,30,0">Ulož měření</Button>
+            <Button Name="save" Click="ButtonBase_Save" FontSize="17" Width="100" Height="40" VerticalContentAlignment="Top" HorizontalAlignment="Right" Margin="0,0,30,0">Ulož měření</Button>
             
         </Grid>
         <Grid>
@@ -23,7 +23,6 @@
                 <Label Height="40" Margin="0, 0, 0, 10"  FontSize="25" Content="Zdravotní riziko: " />
                 <Label Height="40" Margin="0, 0, 0, 10" FontSize="25" Content="Jména rizika: " />
                 <Label Height="40" Margin="0, 0, 0, 10" FontSize="25" Content="Přítomnost rikzika: " />
-                <Label Height="40" Margin="0, 0, 0, 10" FontSize="25" Content="Datum objevení rizika: " />
                 <Label Height="40" Margin="0, 0, 0, 10" FontSize="25" Content="Metoda určení: " />
                 <Label Height="40" Margin="0, 0, 0, 10" FontSize="25" Content="Komentář: " />
             </StackPanel>
@@ -31,7 +30,6 @@
                 <TextBox Height="40" Margin="0, 0, 0, 10" Width="500" HorizontalAlignment="Left" FontSize="25" Name="risk" > </TextBox>
                 <TextBox Height="40" Margin="0, 0, 0, 10" FontSize="25" Width="300" HorizontalAlignment="Left" Name="namerisk" > </TextBox>
                 <ComboBox Height="40" Margin="0, 0, 0, 10" FontSize="25" Width="250" HorizontalAlignment="Left" Name="isin" > </ComboBox>
-                <DatePicker Height="40" Margin="0, 0, 0, 10" FontSize="25" Width="250" HorizontalAlignment="Left" Name="date" > </DatePicker>
                 <TextBox Height="40" Margin="0, 0, 0, 10" FontSize="25" Width="500" HorizontalAlignment="Left" Name="methode" > </TextBox>
                 <TextBox TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Height="120" FontSize="25" Name="comment" > </TextBox> 
             </StackPanel>

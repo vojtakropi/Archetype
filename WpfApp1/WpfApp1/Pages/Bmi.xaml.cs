@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -64,6 +65,10 @@ public partial class Bmi : Page
         connection.InsertSQL($"insert into bmi (bmi, interpret, comment, factors, patientID)" +
                              $" values ({bmiObject.GetBmi()}, '{bmiObject.GetInterpret()}', '{bmiObject.GetComment()}'," +
                              $" '{bmiObject.GetConfoundingF()}', {_mainWindow.GetPatient().GetId()})");
+        Connection newcon = new Connection();
+        List<Tuple<DateTime, string>> visits; 
+        newcon.GetVisits(_mainWindow.GetPatient().GetId(), out visits);
+        _mainWindow.AddButtons(visits);
         NavigationService.Navigate(null);
     }
 }

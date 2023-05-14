@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -98,11 +99,15 @@ public partial class BloodPressure : Page
             decimal.Parse(art.Text), pos.Text, sleep.Text, comment.Text);
         
         Connection connection = new Connection();
-        connection.InsertSQL($"insert into medication (systolic, dyastolic, puls, arterial_mean, position, sleep_status, comment, PatientID)," +
-                             $"values ({bloodPressureObject.GetSystolic()}, {bloodPressureObject.GetDiastolic()}, {bloodPressureObject.GetPulse()}," +
+        connection.InsertSQL($"insert into blood_pressure (systolic, dyastolic, puls, arterial_mean, position, sleep_status, comment, PatientID) " +
+                             $"values ({bloodPressureObject.GetSystolic()}, {bloodPressureObject.GetDiastolic()}, {bloodPressureObject.GetPulse()}, " +
                              $"{bloodPressureObject.GetMeanArterieal()}, '{bloodPressureObject.GetPosition()}', '{bloodPressureObject.GetSleepStatus()}'," +
                              $" '{bloodPressureObject.GetComment()}',  {_mainWindow.GetPatient().GetId()})");
         
+        Connection newcon = new Connection();
+        List<Tuple<DateTime, string>> visits; 
+        newcon.GetVisits(_mainWindow.GetPatient().GetId(), out visits);
+        _mainWindow.AddButtons(visits);
         NavigationService.Navigate(null);
     }
 }

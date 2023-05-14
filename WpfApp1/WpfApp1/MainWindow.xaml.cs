@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Windows;
+using WpfApp1.Archetypes.Evaulation;
+using WpfApp1.Archetypes.medication;
+using WpfApp1.Archetypes.Observatory;
 using WpfApp1.Archetypes.Patient;
 using WpfApp1.Database;
 using WpfApp1.page_Classes;
@@ -70,7 +74,7 @@ namespace WpfApp1
             Ic.Visibility = Visibility.Visible;
         }
         
-        private void HelloWorldButton2_Click(object sender, RoutedEventArgs e)
+        private void ChoosePatient_Click(object sender, RoutedEventArgs e)
         {
             Ic.Visibility = Visibility.Hidden;
             Tools.Visibility = Visibility.Visible;
@@ -81,11 +85,15 @@ namespace WpfApp1
             Connection connection = new Connection();
             List<Tuple<DateTime, string>> visits; 
             connection.GetVisits(_activePatient.GetId(), out visits);
-            
+            AddButtons(visits);
+        }
+
+        public void AddButtons(List<Tuple<DateTime, string>> visits)
+        {
             List<Button> buttons = new List<Button>();
             foreach (var visit in visits)
             {
-                buttons.Add(new Button { ButtonContent = visit.Item1 + ": " + visit.Item2});
+                buttons.Add(new Button { ButtonContent = visit.Item1 + ";  " + visit.Item2});
             }
             IcVis.ItemsSource = buttons;
             IcVis.Visibility = Visibility.Visible;
@@ -99,12 +107,71 @@ namespace WpfApp1
         private void Button_Click_ChooseVisit(object sender, RoutedEventArgs e)
         {
             var content = ((System.Windows.Controls.Button)sender).Content.ToString();
-            var date = content!.Split(":");
-            var datetime = DateTime.Parse(date[0].Replace(":", ""));
+            var date = content!.Split(";");
+            var type = date[1].Replace(" ", "");
+            var datetime = DateTime.Parse(date[0]);
             Connection connection = new Connection();
-            var u = connection.GetVisitDetail(_activePatient.GetId(), datetime, date[1]);
-            
-            var t = "";
+
+            switch (type)
+            {
+               case "BMI":
+                   BMI_object bmiObject = connection.GetBMIdetail(_activePatient.GetId(), datetime);
+                   var bmi = new Bmi(this);
+                   bmi.bmi.Text = bmiObject.GetBmi().ToString(CultureInfo.InvariantCulture);
+                   bmi.cofounding.Text = bmiObject.GetConfoundingF();
+                   bmi.comment.Text = bmiObject.GetComment();
+                   bmi.interpret.Text = bmiObject.GetInterpret();
+                   bmi.save.Visibility = Visibility.Hidden;
+                   Main.Content = bmi;
+                   break;
+               case "Krevnítlak":
+                   BloodPressure_object bloodPressureObject = connection.GetBloodPressuredetail(_activePatient.GetId(), datetime);
+                   var bloodpressure = new BloodPressure(this);
+                   bloodpressure.dia.Text = bloodPressureObject.GetDiastolic().ToString();
+                   bloodpressure.sys.Text = bloodPressureObject.GetSystolic().ToString();
+                   bloodpressure.art.Text = bloodPressureObject.GetMeanArterieal().ToString(CultureInfo.InvariantCulture);
+                   bloodpressure.comment.Text = bloodPressureObject.GetComment();
+                   bloodpressure.puls.Text = bloodPressureObject.GetPulse().ToString();
+                   bloodpressure.sleep.Text = bloodPressureObject.GetSleepStatus();
+                   bloodpressure.pos.Text = bloodPressureObject.GetPosition();
+                   bloodpressure.save.Visibility = Visibility.Hidden;
+                   Main.Content = bloodpressure;
+                   break;
+               case "Zdravotnírizika":
+                   HealtRiskAssessment_object healtRiskAssessmentObject = connection.GetHealtRiskdetail(_activePatient.GetId(), datetime);
+                   var healthRiskAssesment = new HealthRiskAssesment(this);
+                   healthRiskAssesment.comment.Text = healtRiskAssessmentObject.GetComment();
+                   healthRiskAssesment.risk.Text = healtRiskAssessmentObject.GethealthRisk();
+                   healthRiskAssesment.isin.Text = healtRiskAssessmentObject.GetPresenece();
+                   healthRiskAssesment.methode.Text = healtRiskAssessmentObject.GetAssesmentMethode();
+                   healthRiskAssesment.namerisk.Text = healtRiskAssessmentObject.GetDescription();
+                   healthRiskAssesment.save.Visibility = Visibility.Hidden;
+                   Main.Content = healthRiskAssesment;
+                   break;
+               case "Váha":
+                   Weight_object weightObject = connection.GetWeightdetail(_activePatient.GetId(), datetime);
+                   var weight = new Weight(this);
+                   weight.weight.Text = weightObject.GetWeight().ToString(CultureInfo.InvariantCulture);
+                   weight.comment.Text = weightObject.GetComment();
+                   weight.cofounding.Text = weightObject.GetCofoundingF();
+                   weight.stateofclotsh.Text = weightObject.GetStateOfD();
+                   weight.save.Visibility = Visibility.Hidden;
+                   Main.Content = weight; 
+                   break;
+               case "Medikace":
+                   Medication_object medicationObject =
+                       connection.GetMedicationdetail(_activePatient.GetId(), datetime);
+                   var medication = new Medication(this);
+                   medication.medication.Text = medicationObject.GetMedication();
+                   medication.comment.Text = medicationObject.GetComment();
+                   medication.amount.Text = medicationObject.GetAmount().ToString(CultureInfo.InvariantCulture);
+                   medication.insertion.Text = medicationObject.GetRoute();
+                   medication.place.Text = medicationObject.GetBodySite();
+                   medication.unit.Text = medicationObject.GetUnit();
+                   medication.save.Visibility = Visibility.Hidden;
+                   Main.Content = medication;
+                   break;
+            }
         }
     }
     class Button

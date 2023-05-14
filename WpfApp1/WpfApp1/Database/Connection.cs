@@ -45,7 +45,7 @@ public class Connection
                 
             while (reader.Read())
             {
-                patients.Add(new Patient(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3),
+                patients.Add(new Patient(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3),
                     reader.GetString(4), reader.GetString(5)));
             }
             cnn.Close();
@@ -107,7 +107,7 @@ public class Connection
                 
             while (reader.Read())
             {
-                visits.Add(Tuple.Create(reader.GetDateTime(7), "Zdravotní rizika"));
+                visits.Add(Tuple.Create(reader.GetDateTime(6), "Zdravotní rizika"));
             }
             cnn.Close();
         }
@@ -149,111 +149,125 @@ public class Connection
             MessageBox.Show(ex.ToString());
         }
     }
-    public object GetVisitDetail(int id, DateTime dateTime, string value)
+
+    public BMI_object GetBMIdetail(int id, DateTime dateTime)
     {
-        
         MySqlConnection cnn = new MySqlConnection(MyConnectionString);
         var command = cnn.CreateCommand();
-
-        switch (value)
+        var date = dateTime.ToString("yyyy-MM-dd HH:mm:ss");
+        command.CommandText = $"select * from bmi where PatientID = {id} and date = '{date}'";
+        try
         {
-            case "Krevní tlak":
-                command.CommandText = $"select * from blood_pressure where PatientID = {id} and date = '{dateTime}'";
-                try
-                {
-                    cnn.Open();
-                    MySqlDataReader reader = command.ExecuteReader();
+            cnn.Open();
+            MySqlDataReader reader = command.ExecuteReader();
                 
-                    if (reader.Read())
-                    {
-                        return new BloodPressure_object(reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3), reader.GetDecimal(4),
-                            reader.GetString(5), reader.GetString(6), reader.GetString(7));
-                    }
-                    cnn.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-                break;
-            case "BMI":
-                command.CommandText = $"select * from bmi where PatientID = {id} and date = '{dateTime}'";
-                try
-                {
-                    cnn.Open();
-                    MySqlDataReader reader = command.ExecuteReader();
-                
-                    if (reader.Read())
-                    {
-                        return new BMI_object(reader.GetInt32(1), reader.GetString(2), reader.GetString(3), reader.GetString(4));
-                    }
-                    cnn.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-                break;
-            case "Zdravotní rizika":
-                command.CommandText = $"select * from health_risk_assesment where patientID = {id} and date = '{dateTime}'";
-                try
-                {
-                    cnn.Open();
-                    MySqlDataReader reader = command.ExecuteReader();
-                
-                    if (reader.Read())
-                    {
-                        return new HealtRiskAssessment_object(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetDateTime(4),
-                            reader.GetString(5), reader.GetString(6));
-                    }
-                    cnn.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Cannot open connection!");
-                }
-                break;
-            case "Váha":
-                command.CommandText = $"select * from weight where patientID = {id} and date = '{dateTime}'";
-                try
-                {
-                    cnn.Open();
-                    MySqlDataReader reader = command.ExecuteReader();
-                
-                    while (reader.Read())
-                    {
-                        return new Weight_object(reader.GetInt32(1), reader.GetString(2), reader.GetString(3), reader.GetString(4));
-                    }
-                    cnn.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-                break;
-            case "Medikace":
-                command.CommandText = $"select * from medication where patientID = {id} and date = '{dateTime}'";
-                try
-                {
-                    cnn.Open();
-                    MySqlDataReader reader = command.ExecuteReader();
-                
-                    if (reader.Read())
-                    {
-                        return new Medication_object(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetDecimal(4),
-                            reader.GetString(5), reader.GetString(6));
-                    }
-                    cnn.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-                break;
-            default:
-                return null;
+            if (reader.Read())
+            {
+                return new BMI_object(reader.GetInt32(1), reader.GetString(2), reader.GetString(3), reader.GetString(4));
+            }
+            cnn.Close();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.ToString());
         }
 
+        return null;
+    }
+    public BloodPressure_object GetBloodPressuredetail(int id, DateTime dateTime)
+    {
+        MySqlConnection cnn = new MySqlConnection(MyConnectionString);
+        var command = cnn.CreateCommand();
+        var date = dateTime.ToString("yyyy-MM-dd HH:mm:ss");
+        command.CommandText = $"select * from blood_pressure where PatientID = {id} and date = '{date}'";
+        try
+        {
+            cnn.Open();
+            MySqlDataReader reader = command.ExecuteReader();
+                
+            if (reader.Read())
+            {
+                return new BloodPressure_object(reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3), reader.GetDecimal(4),
+                    reader.GetString(5), reader.GetString(6), reader.GetString(7));
+            }
+            cnn.Close();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.ToString());
+        }
+        return null;
+    }
+    public HealtRiskAssessment_object GetHealtRiskdetail(int id, DateTime dateTime)
+    {
+        MySqlConnection cnn = new MySqlConnection(MyConnectionString);
+        var command = cnn.CreateCommand();
+        var date = dateTime.ToString("yyyy-MM-dd HH:mm:ss");
+        command.CommandText = $"select * from health_risk_assesment where patientID = {id} and date = '{date}'";
+        try
+        {
+            cnn.Open();
+            MySqlDataReader reader = command.ExecuteReader();
+                
+            if (reader.Read())
+            {
+                return new HealtRiskAssessment_object(reader.GetString(1), reader.GetString(2), reader.GetString(3),
+                    reader.GetString(4), reader.GetString(5));
+            }
+            cnn.Close();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Cannot open connection!");
+        }
+        return null;
+    }
+    public Weight_object GetWeightdetail(int id, DateTime dateTime)
+    {
+        MySqlConnection cnn = new MySqlConnection(MyConnectionString);
+        var command = cnn.CreateCommand();
+        var date = dateTime.ToString("yyyy-MM-dd HH:mm:ss");
+        command.CommandText = $"select * from weight where patientID = {id} and date = '{date}'";
+        try
+        {
+            cnn.Open();
+            MySqlDataReader reader = command.ExecuteReader();
+                
+            while (reader.Read())
+            {
+                return new Weight_object(reader.GetInt32(1), reader.GetString(2), reader.GetString(3), reader.GetString(4));
+            }
+            cnn.Close();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.ToString());
+        }
+        return null;
+    }
+    
+    public Medication_object GetMedicationdetail(int id, DateTime dateTime)
+    {
+        MySqlConnection cnn = new MySqlConnection(MyConnectionString);
+        var command = cnn.CreateCommand();
+        var date = dateTime.ToString("yyyy-MM-dd HH:mm:ss");
+        command.CommandText = $"select * from medication where patientID = {id} and date = '{date}'";
+        try
+        {
+            cnn.Open();
+            MySqlDataReader reader = command.ExecuteReader();
+                
+            if (reader.Read())
+            {
+                return new Medication_object(reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetDecimal(4),
+                    reader.GetString(5), reader.GetString(6));
+            }
+            cnn.Close();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.ToString());
+        }
         return null;
     }
 }

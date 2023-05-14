@@ -6,7 +6,7 @@ public class Patient
 
     private string surname;
 
-    private int rnum;
+    private string rnum;
 
     private string place;
 
@@ -15,7 +15,7 @@ public class Patient
     private int ID;
 
 
-    public Patient(int id, string name, string surname, int rnum, string place, string phone)
+    public Patient(int id, string name, string surname, string rnum, string place, string phone)
     {
         this.name = name;
         this.surname = surname;
@@ -33,7 +33,7 @@ public class Patient
     {
         return surname;
     }
-    public int GetRnum()
+    public string GetRnum()
     {
         return rnum;
     }

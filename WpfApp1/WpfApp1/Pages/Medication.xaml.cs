@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -77,10 +78,13 @@ public partial class Medication : Page
             decimal.Parse(this.amount.Text), comment.Text, unit.Text);
         
         Connection connection = new Connection();
-        connection.InsertSQL($"insert into medication (medicationname, insertion, insertplace, amount, unit, comment, patientID)," +
+        connection.InsertSQL($"insert into medication (medicationname, insertion, insertplace, amount, unit, comment, patientID) " +
                              $"values ('{medicationObject.GetMedication()}', '{medicationObject.GetRoute()}', '{medicationObject.GetBodySite()}'," +
                              $"{medicationObject.GetAmount()}, '{medicationObject.GetUnit()}', '{medicationObject.GetComment()}', {_mainWindow.GetPatient().GetId()})");
-        
+        Connection newcon = new Connection();
+        List<Tuple<DateTime, string>> visits; 
+        newcon.GetVisits(_mainWindow.GetPatient().GetId(), out visits);
+        _mainWindow.AddButtons(visits);
         NavigationService.Navigate(null);
 
     }

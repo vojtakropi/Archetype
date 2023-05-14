@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,11 +13,23 @@ public partial class HealthRiskAssesment : Page
 {
     
     private MainWindow _mainWindow;
+
+    private List<string> _present = new()
+    {
+        "přítomný",
+        "nepřítomný",
+        "nelze určit"
+    };
     public HealthRiskAssesment(MainWindow mainWindow)
     {
         InitializeComponent();
         _mainWindow = mainWindow;
+        foreach (var state in _present)
+        {
+            isin.Items.Add(state);
+        }
     }
+    
     
     private void ButtonBase_Save(object sender, RoutedEventArgs e)
     {
@@ -43,11 +56,6 @@ public partial class HealthRiskAssesment : Page
             errors.Add(methode);
         }
 
-        if (date.SelectedDate == null)
-        {
-            err = true;
-        }
-
         if (err)
         {
             var converter = new BrushConverter();
@@ -59,14 +67,17 @@ public partial class HealthRiskAssesment : Page
             return;
         }
 
-        HealtRiskAssessment_object healtRiskAssessment = new HealtRiskAssessment_object(risk.Text, namerisk.Text, isin.Text,
-            date.SelectedDate, methode.Text, comment.Text);
+        HealtRiskAssessment_object healtRiskAssessment = new HealtRiskAssessment_object(risk.Text, namerisk.Text, isin.Text, 
+            methode.Text, comment.Text);
         
         Connection connection = new Connection();
-        connection.InsertSQL($"insert into medication (health_risk, risk_factor, present, date_of_find, method, comment, patientID)," +
+        connection.InsertSQL($"insert into health_risk_assesment (health_risk, risk_factor, present, method, comment, patientID) " +
                              $"values ('{healtRiskAssessment.GethealthRisk()}', '{healtRiskAssessment.GetDescription()}', '{healtRiskAssessment.GetPresenece()}'," +
-                             $"'{healtRiskAssessment.GetDate()}', '{healtRiskAssessment.GetAssesmentMethode()}', '{healtRiskAssessment.GetComment()}', {_mainWindow.GetPatient().GetId()})");
-        
+                             $" '{healtRiskAssessment.GetAssesmentMethode()}', '{healtRiskAssessment.GetComment()}', {_mainWindow.GetPatient().GetId()})");
+        Connection newcon = new Connection();
+        List<Tuple<DateTime, string>> visits; 
+        newcon.GetVisits(_mainWindow.GetPatient().GetId(), out visits);
+        _mainWindow.AddButtons(visits);
         NavigationService.Navigate(null);
 
     }

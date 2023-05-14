@@ -10,7 +10,7 @@
     <Grid Background="Moccasin">
         <Grid Height="80" VerticalAlignment="Top">
             <Label FontSize="40" Content="Krevní tlak" />
-            <Button Click="ButtonBase_Save" FontSize="17" Width="100" Height="40" VerticalContentAlignment="Top" HorizontalAlignment="Right" Margin="0,0,30,0">Ulož měření</Button>
+            <Button Name="save" Click="ButtonBase_Save" FontSize="17" Width="100" Height="40" VerticalContentAlignment="Top" HorizontalAlignment="Right" Margin="0,0,30,0">Ulož měření</Button>
             
         </Grid>
         <Grid>

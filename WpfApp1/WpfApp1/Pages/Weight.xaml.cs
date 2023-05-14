@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
@@ -61,6 +62,10 @@ public partial class Weight : Page
         connection.InsertSQL($"insert into weight (weights, comment, clothes, cofounding, patientID)" +
                            $" values ({weightObject.GetWeight()}, '{weightObject.GetComment()}', '{weightObject.GetStateOfD()}'," +
                            $" '{weightObject.GetCofoundingF()}', {_mainWindow.GetPatient().GetId()})");
+        Connection newcon = new Connection();
+        List<Tuple<DateTime, string>> visits; 
+        newcon.GetVisits(_mainWindow.GetPatient().GetId(), out visits);
+        _mainWindow.AddButtons(visits);
         NavigationService.Navigate(null);
         
     }
