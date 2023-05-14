@@ -22,6 +22,17 @@
         <Rectangle Grid.Row="0" Grid.Column="1" Fill="CornflowerBlue"/>
         <Rectangle Grid.Row="0" Grid.Column="2" Fill="CornflowerBlue"/>
         <Rectangle Grid.Row="1" Grid.Column="2" Fill="LightBlue"/>
+        <ItemsControl Grid.Row="1" Grid.Column="2" x:Name="IcVis">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button 
+                        Content="{Binding ButtonContent}" d:DataContext="{d:DesignInstance }"
+                        Click="Button_Click_ChooseVisit" Width="220" Height="60"
+                        Background="LightBlue" FontSize="15" BorderBrush="Black" BorderThickness="3">
+                    </Button>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
         <ItemsControl Grid.Row="1" Grid.Column="2" x:Name="Ic">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>

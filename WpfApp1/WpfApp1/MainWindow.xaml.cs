@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using WpfApp1.Archetypes.Patient;
+using WpfApp1.Database;
 using WpfApp1.page_Classes;
 using WpfApp1.Pages;
 
@@ -17,7 +19,7 @@ namespace WpfApp1
         public MainWindow()
         {
             InitializeComponent();
-            _mainWindowClassWindow = new MainWindowClass();
+            _mainWindowClassWindow = new MainWindowClass(this);
             //Tools.Visibility = Visibility.Hidden;
         }
 
@@ -58,6 +60,7 @@ namespace WpfApp1
         
         private void Button_Click_ChoosePatient(object sender, RoutedEventArgs e)
         {
+            IcVis.Visibility = Visibility.Hidden;
             List<Button> buttons = new List<Button>();
             foreach (var patient in _mainWindowClassWindow.GetPatients())
             {
@@ -69,18 +72,39 @@ namespace WpfApp1
         
         private void HelloWorldButton2_Click(object sender, RoutedEventArgs e)
         {
+            Ic.Visibility = Visibility.Hidden;
             Tools.Visibility = Visibility.Visible;
             _activePatient = _mainWindowClassWindow.GetPatientByName(((System.Windows.Controls.Button)sender).Content.ToString()!);
             name.Content = _activePatient.GetName();
             surname.Content = _activePatient.GetSurname();
             rnum.Content = _activePatient.GetRnum();
-            Ic.Visibility = Visibility.Hidden;
-
+            Connection connection = new Connection();
+            List<Tuple<DateTime, string>> visits; 
+            connection.GetVisits(_activePatient.GetId(), out visits);
+            
+            List<Button> buttons = new List<Button>();
+            foreach (var visit in visits)
+            {
+                buttons.Add(new Button { ButtonContent = visit.Item1 + ": " + visit.Item2});
+            }
+            IcVis.ItemsSource = buttons;
+            IcVis.Visibility = Visibility.Visible;
         }
 
         public Patient GetPatient()
         {
             return _activePatient;
+        }
+
+        private void Button_Click_ChooseVisit(object sender, RoutedEventArgs e)
+        {
+            var content = ((System.Windows.Controls.Button)sender).Content.ToString();
+            var date = content!.Split(":");
+            var datetime = DateTime.Parse(date[0].Replace(":", ""));
+            Connection connection = new Connection();
+            var u = connection.GetVisitDetail(_activePatient.GetId(), datetime, date[1]);
+            
+            var t = "";
         }
     }
     class Button

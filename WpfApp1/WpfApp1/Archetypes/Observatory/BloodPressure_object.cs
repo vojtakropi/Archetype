@@ -7,13 +7,13 @@ public class BloodPressure_object
     private int _systolic;
     private int _diastolic;
     private int _pulse;
-    private int _meanArterial;
+    private decimal _meanArterial;
     private string _position;
-    private int _sleepstatus;
+    private string _sleepstatus;
     private string _comment;
 
 
-    public BloodPressure_object(int systolic, int diastolic, int pulse, int meanArterial, string position, int sleepstatus, string comment)
+    public BloodPressure_object(int systolic, int diastolic, int pulse, decimal meanArterial, string position, string sleepstatus, string comment)
     {
         _systolic = systolic;
         _diastolic = diastolic;
@@ -38,7 +38,7 @@ public class BloodPressure_object
     {
         return _pulse;
     }
-    public int GetMeanArterieal()
+    public decimal GetMeanArterieal()
     {
         return _meanArterial;
     }
@@ -46,10 +46,13 @@ public class BloodPressure_object
     {
         return _position;
     }
-    public int GetSleepStatus()
+    public string GetSleepStatus()
     {
         return _sleepstatus;
     }
-    
-    
+
+    public string GetComment()
+    {
+        return _comment;
+    }
 }

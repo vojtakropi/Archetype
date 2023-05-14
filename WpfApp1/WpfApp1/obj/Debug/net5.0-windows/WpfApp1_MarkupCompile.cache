@@ -1,5 +1,5 @@
 ﻿WpfApp1
-1.0.0.0
+
 
 winexe
 C#
@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 C:\Users\kropacekv\Documents\c#projets\Archetype\WpfApp1\WpfApp1\App.xaml
 7-1714550195
 
-19-2004461407
+17-1564142852
 201886109146
 MainWindow.xaml;Pages\BloodPressure.xaml;Pages\Bmi.xaml;Pages\HealthRiskAssesment.xaml;Pages\Medication.xaml;Pages\PatientStatus.xaml;Pages\Weight.xaml;
 
-True
+False
 

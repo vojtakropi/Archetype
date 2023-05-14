@@ -10,10 +10,12 @@ namespace WpfApp1.page_Classes;
 public class MainWindowClass
 {
     private List<Patient> _patients;
+    
 
-    public MainWindowClass()
+    public MainWindowClass(MainWindow mainWindow)
     {
         _patients = new List<Patient>();
+        
     }
 
     public void AddPatient(Patient patient)
@@ -37,4 +39,6 @@ public class MainWindowClass
         Patient p = _patients.First(a => a.GetName() == firstname && a.GetSurname() == surname);
         return p;
     }
+    
+    
 }
