@@ -8,4 +8,25 @@
         <LangVersion>latest</LangVersion>
     </PropertyGroup>
 
+    <ItemGroup>
+      <None Remove="img\BMI.png" />
+      <Resource Include="img\BMI.png" />
+      <None Remove="img\bloodpressure.jpg" />
+      <Resource Include="img\bloodpressure.jpg" />
+      <None Remove="img\scale.jpg" />
+      <Resource Include="img\scale.jpg" />
+      <None Remove="img\healthrisk.jpg" />
+      <Resource Include="img\healthrisk.jpg" />
+      <None Remove="img\medication.jpg" />
+      <Resource Include="img\medication.jpg" />
+      <None Remove="img\plus.png" />
+      <Resource Include="img\plus.png" />
+      <None Remove="img\choose.png" />
+      <Resource Include="img\choose.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MySql.Data" Version="8.0.33" />
+    </ItemGroup>
+
 </Project>

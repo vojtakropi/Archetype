@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid Background="LightGoldenrodYellow">
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="140"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>			
@@ -22,27 +22,76 @@
         <Rectangle Grid.Row="0" Grid.Column="1" Fill="CornflowerBlue"/>
         <Rectangle Grid.Row="0" Grid.Column="2" Fill="CornflowerBlue"/>
         <Rectangle Grid.Row="1" Grid.Column="2" Fill="LightBlue"/>
-        <ItemsControl Grid.Row="1" Grid.Column="1" x:Name="Ic">
+        <ItemsControl Grid.Row="1" Grid.Column="2" x:Name="Ic">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Button 
                         Content="{Binding ButtonContent}" d:DataContext="{d:DesignInstance }"
-                            Click="HelloWorldButton2_Click" Width="250" Height="60" Margin="20"
-                            Background="Teal">
+                            Click="HelloWorldButton2_Click" Width="220" Height="60" Margin="5"
+                            Background="LightBlue" FontSize="20" FontWeight="Medium" BorderBrush="Black" BorderThickness="3">
                         </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <Button Grid.Row="0" Grid.Column="0" Width="100" Click="BMI_Click" Margin="20" HorizontalAlignment="Left">Go Back</Button>
-        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Name="Tools">
-            <Button Click="BMI_Click" Margin="5" >Act</Button>
-            <Button Click="BloodPressure_Click" Margin="5" >Eval</Button>
-            <Button Click="BMI_Click" Margin="5" >Obs</Button>
-            <Button Click="Weight_Click" Margin="5">Obs</Button>
-            <Button Click="BMI_Click" Margin="5">Instruction</Button>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <StackPanel>
+                <Label FontSize="30">Vybraný pacient: </Label>
+                <Label FontSize="15">Jméno:</Label>
+                <Label FontSize="15">Přijmení:</Label>
+                <Label FontSize="15">Rodné číslo:</Label>
             </StackPanel>
-        <Button Grid.Row="0" Grid.Column="2" Width="100" Click="Button_Click_1" Margin="20" HorizontalAlignment="Right">Novy pacient</Button>
-        <Button Grid.Row="0" Grid.Column="2" Width="100" Click="Button_Click_2" Margin="20" HorizontalAlignment="Left">Vyber pacienta</Button>
+            <StackPanel Margin="85, 50, 0, 0">
+                <Label FontSize="15" Name="name"></Label>
+                <Label FontSize="15" Name="surname"></Label>
+                <Label FontSize="15" Name="rnum"></Label>
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Name="Tools" >
+            <Button Height="100" Width="100" Background="YellowGreen" Click="BMI_Click" Margin="10">
+                <StackPanel>
+                    <Image Width="90" Height="60" VerticalAlignment="Top" Source="img/BMI.png" />
+                    <Label FontSize="20" FontWeight="Bold" Margin="20, 0, 0, 0"> BMI </Label>
+                </StackPanel>
+            </Button>
+            <Button Height="100" Width="100" Background="YellowGreen" Click="BloodPressure_Click" Margin="10">
+                <StackPanel>
+                    <Image Width="90" Height="60" VerticalAlignment="Top" Source="img/bloodpressure.jpg" />
+                    <Label FontSize="15" FontWeight="Bold" Margin="0, 0, 0, 0"> Krevní tlak </Label>
+                </StackPanel>
+            </Button>
+            <Button Height="100" Width="100" Background="YellowGreen" Click="Weight_Click" Margin="10">
+                <StackPanel>
+                    <Image Width="90" Height="60" VerticalAlignment="Top" Source="img/scale.jpg" />
+                    <Label FontSize="15" FontWeight="Bold" Margin="20, 0, 0, 0"> Váha </Label>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,70,0">
+            <Button Height="100" Width="100" Background="YellowGreen" Click="HealthRiskAssesment_Click" Margin="10" >
+                <StackPanel>
+                    <Image Width="90" Height="60" VerticalAlignment="Top" Source="img/healthrisk.jpg" />
+                    <Label FontSize="15" FontWeight="Bold" Margin="0, 0, 0, 0"> Zdrav. rizika </Label>
+                </StackPanel>
+            </Button>
+            <Button Height="100" Width="100" Background="YellowGreen" Click="Medication_Click" Margin="10">
+                <StackPanel>
+                    <Image Width="90" Height="60" VerticalAlignment="Top" Source="img/medication.jpg" />
+                    <Label FontSize="15" FontWeight="Bold" Margin="10, 0, 0, 0"> Medikace </Label>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <Button Grid.Row="0" Grid.Column="2" Width="100" Click="Button_Click_NewPatient" Background="Gold" Margin="20" HorizontalAlignment="Right" FontSize="15" FontWeight="DemiBold">
+            <StackPanel>
+                <Image Width="90" Height="60" VerticalAlignment="Top" Source="img/plus.png" />
+                <Label FontSize="13" FontWeight="Bold" Margin="0, 0, 0, 0"> Nový pacient </Label>
+            </StackPanel>
+        </Button>
+        <Button Grid.Row="0" Grid.Column="2" Width="100" Click="Button_Click_ChoosePatient" Margin="20" HorizontalAlignment="Left" Background="Gold">
+            <StackPanel>
+                <Image Width="90" Height="60" VerticalAlignment="Top" Source="img/choose.png" />
+                <Label FontSize="12" FontWeight="Bold" Margin="0, 0, 0, 0">Vyber pacienta</Label>
+            </StackPanel>
+        </Button>
         <Frame Grid.Row="1" Grid.Column="1" x:Name="Main" NavigationUIVisibility="Hidden"> </Frame>
       
     </Grid>

@@ -12,13 +12,13 @@
             <ColumnDefinition Width="250"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label FontSize="40" Content="Novy pacient" />
+        <Label FontSize="40" Content="Nový pacient" />
         <StackPanel Grid.Column="0" Margin="0, 100, 0, 0">
-            <Label Height="40" FontSize="25" Content="Jmeno: " />
-            <Label Height="40" FontSize="25" Content="Prijmeni: " />
-            <Label Height="40" FontSize="25" Content="Rodne cislo: " />
-            <Label Height="40" FontSize="25" Content="Bydliste: " />
-            <Label Height="40" FontSize="25" Content="Telefoni cislo: " />
+            <Label Height="40" FontSize="25" Content="Jméno: " />
+            <Label Height="40" FontSize="25" Content="Přijmení: " />
+            <Label Height="40" FontSize="25" Content="Rodné čislo: " />
+            <Label Height="40" FontSize="25" Content="Bydliště: " />
+            <Label Height="40" FontSize="25" Content="Telefoní číslo: " />
         </StackPanel>
         <StackPanel Grid.Column="1" Width="250" HorizontalAlignment="Left" Margin="0, 100, 0, 0">
             <TextBox Height="40" FontSize="25" Name="Jmeno" > </TextBox>
@@ -27,7 +27,7 @@
             <TextBox Height="40" FontSize="25" Name="Bydliste" > </TextBox> 
             <TextBox Height="40" FontSize="25" Name="Tel" > </TextBox> 
         </StackPanel>
-        <Button Grid.Column="1" Click="ButtonBase_Save" Width="100" Height="50" Margin="0,0,0,50" VerticalAlignment="Bottom"> Uloz pacineta</Button>
+        <Button Grid.Column="1" Click="ButtonBase_Save" Width="100" Height="50" Margin="0,0,0,50" VerticalAlignment="Bottom"> Ulož pacineta</Button>
     </Grid>
         </Border>
 </Page>

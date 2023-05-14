@@ -9,21 +9,18 @@ public class HealtRiskAssessment_object
     private string riskFactor;
 
     private string presence;
-
-    private string description;
-
-    private DateTime date;
+    
+    private DateTime? date;
 
     private string assesmentMethode;
 
     private string comment;
 
-    public HealtRiskAssessment_object(string healthRisk, string riskFactor, string presence, string description, DateTime date, string assesmentMethode, string comment)
+    public HealtRiskAssessment_object(string healthRisk, string riskFactor, string presence, DateTime? date, string assesmentMethode, string comment)
     {
         this.healthRisk = healthRisk;
         this.riskFactor = riskFactor;
         this.presence = presence;
-        this.description = description;
         this.date = date;
         this.assesmentMethode = assesmentMethode;
         this.comment = comment;
@@ -45,7 +42,7 @@ public class HealtRiskAssessment_object
     {
         return healthRisk;
     }
-    public DateTime GetDate()
+    public DateTime? GetDate()
     {
         return date;
     }

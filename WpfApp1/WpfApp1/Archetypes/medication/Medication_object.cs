@@ -8,11 +8,20 @@ public class Medication_object
 
     private string bodySite;
 
-    public Medication_object(string medication, string route, string bodySite)
+    private decimal amount;
+
+    private string comment;
+
+    private string unit;
+
+    public Medication_object(string medication, string route, string bodySite, decimal amount, string comment, string unit)
     {
         this.medication = medication;
         this.route = route;
         this.bodySite = bodySite;
+        this.amount = amount;
+        this.comment = comment;
+        this.unit = unit;
     }
 
     public string GetMedication()
@@ -27,6 +36,20 @@ public class Medication_object
     {
         return bodySite;
     }
-    
+
+    public string GetComment()
+    {
+        return comment;
+    }
+
+    public string GetUnit()
+    {
+        return unit;
+    }
+
+    public decimal GetAmount()
+    {
+        return amount;
+    }
     
 }

@@ -2,13 +2,13 @@ namespace WpfApp1.Archetypes.Observatory;
 
 public class BMI_object
 {
-    private int bmi;
+    private decimal bmi;
     private string interpret;
     private string comment;
     private string confoundingF;
 
 
-    public BMI_object(int bmi, string interpret, string comment, string confoundingF)
+    public BMI_object(decimal bmi, string interpret, string comment, string confoundingF)
     {
         this.bmi = bmi;
         this.interpret = interpret;
@@ -16,7 +16,7 @@ public class BMI_object
         this.confoundingF = confoundingF;
     }
 
-    public int GetBmi()
+    public decimal GetBmi()
     {
         return bmi;
     }

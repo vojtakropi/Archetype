@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WpfApp1.Archetypes;
 using WpfApp1.Archetypes.Patient;
+using WpfApp1.Database;
 
 namespace WpfApp1.page_Classes;
 
@@ -22,6 +23,9 @@ public class MainWindowClass
 
     public List<Patient> GetPatients()
     {
+        Connection connection = new Connection();
+        var patients = connection.GetPatients();
+        _patients = patients;
         return _patients;
     }
 

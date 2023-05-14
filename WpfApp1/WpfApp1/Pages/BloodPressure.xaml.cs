@@ -18,9 +18,11 @@ public partial class BloodPressure : Page
         "spící",
         "vzhůru"
     };
-    public BloodPressure()
+    private MainWindow _mainWindow;
+    public BloodPressure(MainWindow mainWindow)
     {
         InitializeComponent();
+        _mainWindow = mainWindow;
         foreach (var sleeps in _sleepstat)
         {
             sleep.Items.Add(sleeps);
